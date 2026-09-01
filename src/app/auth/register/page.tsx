@@ -1,4 +1,5 @@
-import { AuthPageContainer } from "@/components/auth/AuthPageContainer";
+import { Suspense } from "react";
+import { AuthPageContainer } from "../../../components/auth/AuthPageContainer";
 
 export const metadata = {
   title: "Create Account | Capacity Connect",
@@ -6,5 +7,13 @@ export const metadata = {
 };
 
 export default function RegisterPage() {
-  return <AuthPageContainer initialMode="register" />;
+  return (
+    <Suspense fallback={
+      <div style={{ minHeight: "80vh", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-secondary)" }}>
+        Loading Auth Portal...
+      </div>
+    }>
+      <AuthPageContainer initialMode="register" />
+    </Suspense>
+  );
 }
